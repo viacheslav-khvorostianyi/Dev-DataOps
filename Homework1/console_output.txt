@@ -1,0 +1,775 @@
+$ terraform init
+Initializing the backend...
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Reusing previous version of hashicorp/google from the dependency lock file
+- Using previously-installed hashicorp/google v7.2.0
+- Using previously-installed hashicorp/aws v5.100.0
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+
+User@DESKTOP-31NCPOQ MINGW64 ~/PycharmProjects/Dev-DataOps/Homework1 (main)
+$ terraform plan
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_bigquery_dataset.example will be created
+  + resource "google_bigquery_dataset" "example" {
+      + creation_time              = (known after apply)
+      + dataset_id                 = "test_dataset"
+      + default_collation          = (known after apply)
+      + delete_contents_on_destroy = false
+      + effective_labels           = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + etag                       = (known after apply)
+      + id                         = (known after apply)
+      + is_case_insensitive        = (known after apply)
+      + last_modified_time         = (known after apply)
+      + location                   = "EU"
+      + max_time_travel_hours      = (known after apply)
+      + project                    = "quickstart-1571836766309"
+      + self_link                  = (known after apply)
+      + storage_billing_model      = (known after apply)
+      + terraform_labels           = {
+          + "goog-terraform-provisioned" = "true"
+        }
+
+      + access (known after apply)
+    }
+
+  # google_bigquery_table.example_table will be created
+  + resource "google_bigquery_table" "example_table" {
+      + creation_time                = (known after apply)
+      + dataset_id                   = "test_dataset"
+      + deletion_protection          = false
+      + effective_labels             = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + etag                         = (known after apply)
+      + expiration_time              = (known after apply)
+      + generated_schema_columns     = (known after apply)
+      + id                           = (known after apply)
+      + ignore_auto_generated_schema = false
+      + last_modified_time           = (known after apply)
+      + location                     = (known after apply)
+      + max_staleness                = (known after apply)
+      + num_bytes                    = (known after apply)
+      + num_long_term_bytes          = (known after apply)
+      + num_rows                     = (known after apply)
+      + project                      = "quickstart-1571836766309"
+      + schema                       = jsonencode(
+            [
+              + {
+                  + mode = "REQUIRED"
+                  + name = "id"
+                  + type = "STRING"
+                },
+              + {
+                  + mode = "NULLABLE"
+                  + name = "value"
+                  + type = "INTEGER"
+                },
+            ]
+        )
+      + self_link                    = (known after apply)
+      + table_id                     = "test_table"
+      + terraform_labels             = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + type                         = (known after apply)
+    }
+
+  # google_compute_firewall.allow_ssh will be created
+  + resource "google_compute_firewall" "allow_ssh" {
+      + creation_timestamp = (known after apply)
+      + destination_ranges = (known after apply)
+      + direction          = (known after apply)
+      + enable_logging     = (known after apply)
+      + id                 = (known after apply)
+      + name               = "allow-ssh-ingress"
+      + network            = "default"
+      + priority           = 1000
+      + project            = "quickstart-1571836766309"
+      + self_link          = (known after apply)
+      + source_ranges      = [
+          + "0.0.0.0/0",
+        ]
+      + target_tags        = [
+          + "public",
+        ]
+
+      + allow {
+          + ports    = [
+              + "22",
+            ]
+          + protocol = "tcp"
+        }
+    }
+
+  # google_compute_instance.test_instance will be created
+  + resource "google_compute_instance" "test_instance" {
+      + can_ip_forward       = false
+      + cpu_platform         = (known after apply)
+      + creation_timestamp   = (known after apply)
+      + current_status       = (known after apply)
+      + deletion_protection  = false
+      + effective_labels     = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + id                   = (known after apply)
+      + instance_id          = (known after apply)
+      + label_fingerprint    = (known after apply)
+      + machine_type         = "e2-micro"
+      + metadata_fingerprint = (known after apply)
+      + min_cpu_platform     = (known after apply)
+      + name                 = "test-instance"
+      + project              = "quickstart-1571836766309"
+      + self_link            = (known after apply)
+      + tags                 = [
+          + "public",
+        ]
+      + tags_fingerprint     = (known after apply)
+      + terraform_labels     = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + zone                 = "europe-central2-a"
+
+      + boot_disk {
+          + auto_delete                = true
+          + device_name                = (known after apply)
+          + disk_encryption_key_sha256 = (known after apply)
+          + guest_os_features          = (known after apply)
+          + kms_key_self_link          = (known after apply)
+          + mode                       = "READ_WRITE"
+          + source                     = (known after apply)
+
+          + initialize_params {
+              + architecture           = (known after apply)
+              + image                  = "debian-cloud/debian-12"
+              + labels                 = (known after apply)
+              + provisioned_iops       = (known after apply)
+              + provisioned_throughput = (known after apply)
+              + resource_policies      = (known after apply)
+              + size                   = (known after apply)
+              + snapshot               = (known after apply)
+              + type                   = (known after apply)
+            }
+        }
+
+      + confidential_instance_config (known after apply)
+
+      + guest_accelerator (known after apply)
+
+      + network_interface {
+          + internal_ipv6_prefix_length = (known after apply)
+          + ipv6_access_type            = (known after apply)
+          + ipv6_address                = (known after apply)
+          + name                        = (known after apply)
+          + network                     = "default"
+          + network_attachment          = (known after apply)
+          + network_ip                  = (known after apply)
+          + stack_type                  = (known after apply)
+          + subnetwork                  = (known after apply)
+          + subnetwork_project          = (known after apply)
+
+          + access_config {
+              + nat_ip       = (known after apply)
+              + network_tier = (known after apply)
+            }
+        }
+
+      + reservation_affinity (known after apply)
+
+      + scheduling (known after apply)
+    }
+
+  # google_storage_bucket.my_bucket will be created
+  + resource "google_storage_bucket" "my_bucket" {
+      + effective_labels            = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + force_destroy               = true
+      + id                          = (known after apply)
+      + location                    = "EU"
+      + name                        = "test-bucket-12358"
+      + project                     = (known after apply)
+      + project_number              = (known after apply)
+      + public_access_prevention    = (known after apply)
+      + rpo                         = (known after apply)
+      + self_link                   = (known after apply)
+      + storage_class               = "STANDARD"
+      + terraform_labels            = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + time_created                = (known after apply)
+      + uniform_bucket_level_access = (known after apply)
+      + updated                     = (known after apply)
+      + url                         = (known after apply)
+
+      + soft_delete_policy (known after apply)
+
+      + versioning (known after apply)
+
+      + website (known after apply)
+    }
+
+Plan: 5 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + e2_instance_ip = (known after apply)
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
+
+User@DESKTOP-31NCPOQ MINGW64 ~/PycharmProjects/Dev-DataOps/Homework1 (main)
+$ terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_bigquery_dataset.example will be created
+  + resource "google_bigquery_dataset" "example" {
+      + creation_time              = (known after apply)
+      + dataset_id                 = "test_dataset"
+      + default_collation          = (known after apply)
+      + delete_contents_on_destroy = false
+      + effective_labels           = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + etag                       = (known after apply)
+      + id                         = (known after apply)
+      + is_case_insensitive        = (known after apply)
+      + last_modified_time         = (known after apply)
+      + location                   = "EU"
+      + max_time_travel_hours      = (known after apply)
+      + project                    = "quickstart-1571836766309"
+      + self_link                  = (known after apply)
+      + storage_billing_model      = (known after apply)
+      + terraform_labels           = {
+          + "goog-terraform-provisioned" = "true"
+        }
+
+      + access (known after apply)
+    }
+
+  # google_bigquery_table.example_table will be created
+  + resource "google_bigquery_table" "example_table" {
+      + creation_time                = (known after apply)
+      + dataset_id                   = "test_dataset"
+      + deletion_protection          = false
+      + effective_labels             = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + etag                         = (known after apply)
+      + expiration_time              = (known after apply)
+      + generated_schema_columns     = (known after apply)
+      + id                           = (known after apply)
+      + ignore_auto_generated_schema = false
+      + last_modified_time           = (known after apply)
+      + location                     = (known after apply)
+      + max_staleness                = (known after apply)
+      + num_bytes                    = (known after apply)
+      + num_long_term_bytes          = (known after apply)
+      + num_rows                     = (known after apply)
+      + project                      = "quickstart-1571836766309"
+      + schema                       = jsonencode(
+            [
+              + {
+                  + mode = "REQUIRED"
+                  + name = "id"
+                  + type = "STRING"
+                },
+              + {
+                  + mode = "NULLABLE"
+                  + name = "value"
+                  + type = "INTEGER"
+                },
+            ]
+        )
+      + self_link                    = (known after apply)
+      + table_id                     = "test_table"
+      + terraform_labels             = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + type                         = (known after apply)
+    }
+
+  # google_compute_firewall.allow_ssh will be created
+  + resource "google_compute_firewall" "allow_ssh" {
+      + creation_timestamp = (known after apply)
+      + destination_ranges = (known after apply)
+      + direction          = (known after apply)
+      + enable_logging     = (known after apply)
+      + id                 = (known after apply)
+      + name               = "allow-ssh-ingress"
+      + network            = "default"
+      + priority           = 1000
+      + project            = "quickstart-1571836766309"
+      + self_link          = (known after apply)
+      + source_ranges      = [
+          + "0.0.0.0/0",
+        ]
+      + target_tags        = [
+          + "public",
+        ]
+
+      + allow {
+          + ports    = [
+              + "22",
+            ]
+          + protocol = "tcp"
+        }
+    }
+
+  # google_compute_instance.test_instance will be created
+  + resource "google_compute_instance" "test_instance" {
+      + can_ip_forward       = false
+      + cpu_platform         = (known after apply)
+      + creation_timestamp   = (known after apply)
+      + current_status       = (known after apply)
+      + deletion_protection  = false
+      + effective_labels     = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + id                   = (known after apply)
+      + instance_id          = (known after apply)
+      + label_fingerprint    = (known after apply)
+      + machine_type         = "e2-micro"
+      + metadata_fingerprint = (known after apply)
+      + min_cpu_platform     = (known after apply)
+      + name                 = "test-instance"
+      + project              = "quickstart-1571836766309"
+      + self_link            = (known after apply)
+      + tags                 = [
+          + "public",
+        ]
+      + tags_fingerprint     = (known after apply)
+      + terraform_labels     = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + zone                 = "europe-central2-a"
+
+      + boot_disk {
+          + auto_delete                = true
+          + device_name                = (known after apply)
+          + disk_encryption_key_sha256 = (known after apply)
+          + guest_os_features          = (known after apply)
+          + kms_key_self_link          = (known after apply)
+          + mode                       = "READ_WRITE"
+          + source                     = (known after apply)
+
+          + initialize_params {
+              + architecture           = (known after apply)
+              + image                  = "debian-cloud/debian-12"
+              + labels                 = (known after apply)
+              + provisioned_iops       = (known after apply)
+              + provisioned_throughput = (known after apply)
+              + resource_policies      = (known after apply)
+              + size                   = (known after apply)
+              + snapshot               = (known after apply)
+              + type                   = (known after apply)
+            }
+        }
+
+      + confidential_instance_config (known after apply)
+
+      + guest_accelerator (known after apply)
+
+      + network_interface {
+          + internal_ipv6_prefix_length = (known after apply)
+          + ipv6_access_type            = (known after apply)
+          + ipv6_address                = (known after apply)
+          + name                        = (known after apply)
+          + network                     = "default"
+          + network_attachment          = (known after apply)
+          + network_ip                  = (known after apply)
+          + stack_type                  = (known after apply)
+          + subnetwork                  = (known after apply)
+          + subnetwork_project          = (known after apply)
+
+          + access_config {
+              + nat_ip       = (known after apply)
+              + network_tier = (known after apply)
+            }
+        }
+
+      + reservation_affinity (known after apply)
+
+      + scheduling (known after apply)
+    }
+
+  # google_storage_bucket.my_bucket will be created
+  + resource "google_storage_bucket" "my_bucket" {
+      + effective_labels            = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + force_destroy               = true
+      + id                          = (known after apply)
+      + location                    = "EU"
+      + name                        = "test-bucket-12358"
+      + project                     = (known after apply)
+      + project_number              = (known after apply)
+      + public_access_prevention    = (known after apply)
+      + rpo                         = (known after apply)
+      + self_link                   = (known after apply)
+      + storage_class               = "STANDARD"
+      + terraform_labels            = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + time_created                = (known after apply)
+      + uniform_bucket_level_access = (known after apply)
+      + updated                     = (known after apply)
+      + url                         = (known after apply)
+
+      + soft_delete_policy (known after apply)
+
+      + versioning (known after apply)
+
+      + website (known after apply)
+    }
+
+Plan: 5 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + e2_instance_ip = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+google_bigquery_dataset.example: Creating...
+google_storage_bucket.my_bucket: Creating...
+google_compute_firewall.allow_ssh: Creating...
+google_compute_instance.test_instance: Creating...
+google_bigquery_dataset.example: Creation complete after 2s [id=projects/quickstart-1571836766309/datasets/test_dataset]
+google_bigquery_table.example_table: Creating...
+google_storage_bucket.my_bucket: Creation complete after 3s [id=test-bucket-12358]
+google_bigquery_table.example_table: Creation complete after 1s [id=projects/quickstart-1571836766309/datasets/test_dataset/tables/test_table]
+google_compute_firewall.allow_ssh: Still creating... [00m10s elapsed]
+google_compute_instance.test_instance: Still creating... [00m10s elapsed]
+google_compute_firewall.allow_ssh: Creation complete after 12s [id=projects/quickstart-1571836766309/global/firewalls/allow-ssh-ingress]
+google_compute_instance.test_instance: Still creating... [00m20s elapsed]
+google_compute_instance.test_instance: Creation complete after 28s [id=projects/quickstart-1571836766309/zones/europe-central2-a/instances/test-instance]
+
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+e2_instance_ip = "34.116.255.179"
+
+User@DESKTOP-31NCPOQ MINGW64 ~/PycharmProjects/Dev-DataOps/Homework1 (main)
+$ terraform destroy
+google_storage_bucket.my_bucket: Refreshing state... [id=test-bucket-12358]
+google_compute_firewall.allow_ssh: Refreshing state... [id=projects/quickstart-1571836766309/global/firewalls/allow-ssh-ingress]
+google_bigquery_dataset.example: Refreshing state... [id=projects/quickstart-1571836766309/datasets/test_dataset]
+google_compute_instance.test_instance: Refreshing state... [id=projects/quickstart-1571836766309/zones/europe-central2-a/instances/test-instance]
+google_bigquery_table.example_table: Refreshing state... [id=projects/quickstart-1571836766309/datasets/test_dataset/tables/test_table]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # google_bigquery_dataset.example will be destroyed
+  - resource "google_bigquery_dataset" "example" {
+      - creation_time                   = 1757815948602 -> null
+      - dataset_id                      = "test_dataset" -> null
+      - default_partition_expiration_ms = 0 -> null
+      - default_table_expiration_ms     = 0 -> null
+      - delete_contents_on_destroy      = false -> null
+      - effective_labels                = {
+          - "goog-terraform-provisioned" = "true"
+        } -> null
+      - etag                            = "rLGgOtbbUwaFmo3IzgnSYQ==" -> null
+      - id                              = "projects/quickstart-1571836766309/datasets/test_dataset" -> null
+      - is_case_insensitive             = false -> null
+      - labels                          = {} -> null
+      - last_modified_time              = 1757815948602 -> null
+      - location                        = "EU" -> null
+      - max_time_travel_hours           = "168" -> null
+      - project                         = "quickstart-1571836766309" -> null
+      - resource_tags                   = {} -> null
+      - self_link                       = "https://bigquery.googleapis.com/bigquery/v2/projects/quickstart-1571836766309/datasets/test_dataset" -> null
+      - terraform_labels                = {
+          - "goog-terraform-provisioned" = "true"
+        } -> null
+        # (4 unchanged attributes hidden)
+
+      - access {
+          - role           = "OWNER" -> null
+          - user_by_email  = "slavafh@gmail.com" -> null
+            # (4 unchanged attributes hidden)
+        }
+      - access {
+          - role           = "OWNER" -> null
+          - special_group  = "projectOwners" -> null
+            # (4 unchanged attributes hidden)
+        }
+      - access {
+          - role           = "READER" -> null
+          - special_group  = "projectReaders" -> null
+            # (4 unchanged attributes hidden)
+        }
+      - access {
+          - role           = "WRITER" -> null
+          - special_group  = "projectWriters" -> null
+            # (4 unchanged attributes hidden)
+        }
+    }
+
+  # google_bigquery_table.example_table will be destroyed
+  - resource "google_bigquery_table" "example_table" {
+      - creation_time                = 1757815949995 -> null
+      - dataset_id                   = "test_dataset" -> null
+      - deletion_protection          = false -> null
+      - effective_labels             = {
+          - "goog-terraform-provisioned" = "true"
+        } -> null
+      - etag                         = "i/1KigZIzJPjnVkAMWVUdg==" -> null
+      - expiration_time              = 0 -> null
+      - id                           = "projects/quickstart-1571836766309/datasets/test_dataset/tables/test_table" -> null
+      - ignore_auto_generated_schema = false -> null
+      - labels                       = {} -> null
+      - last_modified_time           = 1757815950224 -> null
+      - location                     = "EU" -> null
+      - num_bytes                    = 0 -> null
+      - num_long_term_bytes          = 0 -> null
+      - num_rows                     = 0 -> null
+      - project                      = "quickstart-1571836766309" -> null
+      - require_partition_filter     = false -> null
+      - resource_tags                = {} -> null
+      - schema                       = jsonencode(
+            [
+              - {
+                  - mode = "REQUIRED"
+                  - name = "id"
+                  - type = "STRING"
+                },
+              - {
+                  - mode = "NULLABLE"
+                  - name = "value"
+                  - type = "INTEGER"
+                },
+            ]
+        ) -> null
+      - self_link                    = "https://bigquery.googleapis.com/bigquery/v2/projects/quickstart-1571836766309/datasets/test_dataset/tables/test_table" -> null
+      - table_id                     = "test_table" -> null
+      - terraform_labels             = {
+          - "goog-terraform-provisioned" = "true"
+        } -> null
+      - type                         = "TABLE" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # google_compute_firewall.allow_ssh will be destroyed
+  - resource "google_compute_firewall" "allow_ssh" {
+      - creation_timestamp      = "2025-09-13T19:12:28.258-07:00" -> null
+      - destination_ranges      = [] -> null
+      - direction               = "INGRESS" -> null
+      - disabled                = false -> null
+      - id                      = "projects/quickstart-1571836766309/global/firewalls/allow-ssh-ingress" -> null
+      - name                    = "allow-ssh-ingress" -> null
+      - network                 = "https://www.googleapis.com/compute/v1/projects/quickstart-1571836766309/global/networks/default" -> null
+      - priority                = 1000 -> null
+      - project                 = "quickstart-1571836766309" -> null
+      - self_link               = "https://www.googleapis.com/compute/v1/projects/quickstart-1571836766309/global/firewalls/allow-ssh-ingress" -> null
+      - source_ranges           = [
+          - "0.0.0.0/0",
+        ] -> null
+      - source_service_accounts = [] -> null
+      - source_tags             = [] -> null
+      - target_service_accounts = [] -> null
+      - target_tags             = [
+          - "public",
+        ] -> null
+        # (1 unchanged attribute hidden)
+
+      - allow {
+          - ports    = [
+              - "22",
+            ] -> null
+          - protocol = "tcp" -> null
+        }
+    }
+
+  # google_compute_instance.test_instance will be destroyed
+  - resource "google_compute_instance" "test_instance" {
+      - can_ip_forward             = false -> null
+      - cpu_platform               = "Intel Broadwell" -> null
+      - creation_timestamp         = "2025-09-13T19:12:29.711-07:00" -> null
+      - current_status             = "RUNNING" -> null
+      - deletion_protection        = false -> null
+      - effective_labels           = {
+          - "goog-terraform-provisioned" = "true"
+        } -> null
+      - enable_display             = false -> null
+      - id                         = "projects/quickstart-1571836766309/zones/europe-central2-a/instances/test-instance" -> null
+      - instance_id                = "6644711449634249314" -> null
+      - label_fingerprint          = "vezUS-42LLM=" -> null
+      - labels                     = {} -> null
+      - machine_type               = "e2-micro" -> null
+      - metadata                   = {} -> null
+      - metadata_fingerprint       = "gB2RPT1Ylxw=" -> null
+      - name                       = "test-instance" -> null
+      - project                    = "quickstart-1571836766309" -> null
+      - resource_policies          = [] -> null
+      - self_link                  = "https://www.googleapis.com/compute/v1/projects/quickstart-1571836766309/zones/europe-central2-a/instances/test-instance" -> null
+      - tags                       = [
+          - "public",
+        ] -> null
+      - tags_fingerprint           = "ubqgePYPDQc=" -> null
+      - terraform_labels           = {
+          - "goog-terraform-provisioned" = "true"
+        } -> null
+      - zone                       = "europe-central2-a" -> null
+        # (4 unchanged attributes hidden)
+
+      - boot_disk {
+          - auto_delete                     = true -> null
+          - device_name                     = "persistent-disk-0" -> null
+          - force_attach                    = false -> null
+          - guest_os_features               = [
+              - "UEFI_COMPATIBLE",
+              - "VIRTIO_SCSI_MULTIQUEUE",
+              - "GVNIC",
+              - "SEV_CAPABLE",
+              - "SEV_LIVE_MIGRATABLE_V2",
+            ] -> null
+          - mode                            = "READ_WRITE" -> null
+          - source                          = "https://www.googleapis.com/compute/v1/projects/quickstart-1571836766309/zones/europe-central2-a/disks/test-instance" -> null
+            # (6 unchanged attributes hidden)
+
+          - initialize_params {
+              - architecture                = "X86_64" -> null
+              - enable_confidential_compute = false -> null
+              - image                       = "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-12-bookworm-v20250910" -> null
+              - labels                      = {} -> null
+              - provisioned_iops            = 0 -> null
+              - provisioned_throughput      = 0 -> null
+              - resource_manager_tags       = {} -> null
+              - resource_policies           = [] -> null
+              - size                        = 10 -> null
+              - type                        = "pd-standard" -> null
+                # (2 unchanged attributes hidden)
+            }
+        }
+
+      - network_interface {
+          - internal_ipv6_prefix_length = 0 -> null
+          - name                        = "nic0" -> null
+          - network                     = "https://www.googleapis.com/compute/v1/projects/quickstart-1571836766309/global/networks/default" -> null
+          - network_ip                  = "10.186.0.5" -> null
+          - queue_count                 = 0 -> null
+          - stack_type                  = "IPV4_ONLY" -> null
+          - subnetwork                  = "https://www.googleapis.com/compute/v1/projects/quickstart-1571836766309/regions/europe-central2/subnetworks/default" -> null
+          - subnetwork_project          = "quickstart-1571836766309" -> null
+            # (4 unchanged attributes hidden)
+
+          - access_config {
+              - nat_ip                 = "34.116.255.179" -> null
+              - network_tier           = "PREMIUM" -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+
+      - scheduling {
+          - automatic_restart           = true -> null
+          - availability_domain         = 0 -> null
+          - min_node_cpus               = 0 -> null
+          - on_host_maintenance         = "MIGRATE" -> null
+          - preemptible                 = false -> null
+          - provisioning_model          = "STANDARD" -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - shielded_instance_config {
+          - enable_integrity_monitoring = true -> null
+          - enable_secure_boot          = false -> null
+          - enable_vtpm                 = true -> null
+        }
+    }
+
+  # google_storage_bucket.my_bucket will be destroyed
+  - resource "google_storage_bucket" "my_bucket" {
+      - default_event_based_hold    = false -> null
+      - effective_labels            = {
+          - "goog-terraform-provisioned" = "true"
+        } -> null
+      - enable_object_retention     = false -> null
+      - force_destroy               = true -> null
+      - id                          = "test-bucket-12358" -> null
+      - labels                      = {} -> null
+      - location                    = "EU" -> null
+      - name                        = "test-bucket-12358" -> null
+      - project                     = "quickstart-1571836766309" -> null
+      - project_number              = 598631921278 -> null
+      - public_access_prevention    = "inherited" -> null
+      - requester_pays              = false -> null
+      - rpo                         = "DEFAULT" -> null
+      - self_link                   = "https://www.googleapis.com/storage/v1/b/test-bucket-12358" -> null
+      - storage_class               = "STANDARD" -> null
+      - terraform_labels            = {
+          - "goog-terraform-provisioned" = "true"
+        } -> null
+      - time_created                = "2025-09-14T02:12:29.583Z" -> null
+      - uniform_bucket_level_access = false -> null
+      - updated                     = "2025-09-14T02:12:29.583Z" -> null
+      - url                         = "gs://test-bucket-12358" -> null
+
+      - hierarchical_namespace {
+          - enabled = false -> null
+        }
+
+      - soft_delete_policy {
+          - effective_time             = "2025-09-14T02:12:29.583Z" -> null
+          - retention_duration_seconds = 604800 -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 5 to destroy.
+
+Changes to Outputs:
+  - e2_instance_ip = "34.116.255.179" -> null
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+google_compute_firewall.allow_ssh: Destroying... [id=projects/quickstart-1571836766309/global/firewalls/allow-ssh-ingress]
+google_storage_bucket.my_bucket: Destroying... [id=test-bucket-12358]
+google_bigquery_table.example_table: Destroying... [id=projects/quickstart-1571836766309/datasets/test_dataset/tables/test_table]
+google_compute_instance.test_instance: Destroying... [id=projects/quickstart-1571836766309/zones/europe-central2-a/instances/test-instance]
+google_bigquery_table.example_table: Destruction complete after 0s
+google_bigquery_dataset.example: Destroying... [id=projects/quickstart-1571836766309/datasets/test_dataset]
+google_bigquery_dataset.example: Destruction complete after 1s
+google_storage_bucket.my_bucket: Destruction complete after 1s
+google_compute_firewall.allow_ssh: Still destroying... [id=projects/quickstart-1571836766309/global/firewalls/allow-ssh-ingress, 00m10s elapsed]
+google_compute_instance.test_instance: Still destroying... [id=projects/quickstart-1571836766309/zones...ope-central2-a/instances/test-instance, 00m10s elapsed]
+google_compute_firewall.allow_ssh: Destruction complete after 11s
+google_compute_instance.test_instance: Still destroying... [id=projects/quickstart-1571836766309/zones...ope-central2-a/instances/test-instance, 00m20s elapsed]
+google_compute_instance.test_instance: Still destroying... [id=projects/quickstart-1571836766309/zones...ope-central2-a/instances/test-instance, 00m30s elapsed]
+google_compute_instance.test_instance: Still destroying... [id=projects/quickstart-1571836766309/zones...ope-central2-a/instances/test-instance, 00m40s elapsed]
+google_compute_instance.test_instance: Still destroying... [id=projects/quickstart-1571836766309/zones...ope-central2-a/instances/test-instance, 00m50s elapsed]
+google_compute_instance.test_instance: Still destroying... [id=projects/quickstart-1571836766309/zones...ope-central2-a/instances/test-instance, 01m00s elapsed]
+google_compute_instance.test_instance: Destruction complete after 1m1s
+
+Destroy complete! Resources: 5 destroyed.
