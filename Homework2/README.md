@@ -21,6 +21,8 @@ Task 5 - Visualize another file with Sample application (use bind mounts & endpo
 Task 6 - Attach volume to the container
 ![Docker Attach Volume](./img/docker-attach-volume.PNG)
 
+![Docker Sharing data between volumes](./img/docker-volume-data-sharing.PNG)
+
 
 Task 7 - Add network to the containers
 ![Docker Network](./img/docker-network.png)
