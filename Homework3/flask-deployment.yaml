@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: flask
+  template:
+    metadata:
+      labels:
+        io.kompose.service: flask
+    spec:
+      containers:
+        - name: flask-app
+          image: khvorostianyiuku/homework3_flask
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: DATABASE_URL
+      restartPolicy: Always
